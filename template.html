@@ -1,0 +1,149 @@
+<nav class="navbar navbar-default">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand">Reddit Clone</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    </div>
+  </div>
+</nav>
+
+<main class="container">
+
+  <div class="pull-right">
+    <p><a class="btn btn-info">New Post</a></p>
+  </div>
+
+  <ul class="nav nav-pills">
+    <li role="presentation" class="active">
+      <input type="search" class="form-control input-sm search-form" placeholder="Filter">
+    </li>
+    <div class="form-inline">
+      <label for="sort">  Sort by </label>
+      <select class="form-control" id="sort">
+        <option>Some text</option>
+        <option>Some text</option>
+      </select>
+    </div>
+  </ul>
+
+  <div class="row">
+    <div class="col-md-8">
+
+ <!-- Form -->
+
+ <form name="$ctrl.userForm" novalidate class="form" ng-submit="$ctrl.createPost()" >
+ <div class="form-group" ng-class="{
+   'has-error' : $ctrl.userForm.title.$invalid,
+   'has-error' : $ctrl.userForm.author.$invalid,
+ }">
+ <label class="control-label" for="title">Title</label><br>
+  <input
+  name="title"
+  ng-model="$ctrl.postObj.title"
+  required
+  minlength="1"
+  type="text"
+  class="form-control"
+  id="title">
+  <span ng-show="$ctrl.userForm.title.$error">Title must be entered</span><br>
+
+  <label class="control-label" for="author">Author</label><br>
+   <input
+   name="author"
+   ng-model="$ctrl.postObj.author"
+   required
+   minlength="1"
+   type="text"
+   class="form-control"
+   id="author">
+   <span ng-show="$ctrl.userForm.author.$error">Author must be entered</span><br>
+
+
+   <label class="control-label" for="img">Image URL</label><br>
+    <input
+    name="img"
+    ng-model="$ctrl.postObj.img"
+    type="url"
+    class="form-control"
+    id="img">
+
+    <label class="control-label" for="body">Body</label><br>
+     <textarea
+     name="body"
+     ng-model="$ctrl.postObj.body"
+     maxlength="255"
+     type="text"
+     class="form-control"
+     id="description"></textarea>
+
+  </div>
+
+ <button value="Submit" class="btn btn-primary">Submit</button><br>
+ </form>
+
+<!-- end form -->
+
+    </div>
+  </div>
+
+  <div class="row">
+   <div class="col-md-12">
+    <div ng-repeat="posts in $ctrl.blogDB">
+      <div class="well">
+        <div class="media-left">
+          <img class="media-object">
+        </div>
+        <div class="media-body">
+          <h4 class="media-heading">
+            {{ posts.title }}
+            |
+            <a><i class="glyphicon glyphicon-arrow-up"></i></a>
+            <a><i class="glyphicon glyphicon-arrow-down"></i></a>
+            10
+          </h4>
+          <div class="text-right">
+            {{ posts.author }}
+          </div>
+          <img ng-src="{{ posts.img }}" alt="{{author}}" id="img_posts"/>
+          <p>
+            {{ posts.body }}
+          </p>
+          <div>
+            {{ posts.date }}
+            |
+            <i class="glyphicon glyphicon-comment"></i>
+            <a>
+              {{ posts.comments[0].author }}
+            </a>
+          </div>
+          <div class="row">
+            <div class="col-md-offset-1">
+              <hr>
+              <p>
+              {{ posts.comments[0].text }}
+              </p>
+              <form class="form-inline">
+                <div class="form-group">
+                  <input class="form-control">
+                </div>
+                <div class="form-group">
+                  <input type="submit" class="btn btn-primary">
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    </div>
+  </div>
+</main>

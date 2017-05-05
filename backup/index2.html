@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+  <meta charset="UTF-8">
+  <title>Reddit Clone</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./app.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.js"></script>
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular-animate.js"></script> -->
+  <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
+  <script src="./app.js"></script>
+</head>
+  <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">
+            <img alt="Brand" src="happy.png" id="logo">
+          </a>
+        </div>
+      </div>
+    </nav>
+  <div class="center">
+    <div class="container-fluid">
+
+      <ul class="nav navbar-nav">
+        <li>
+            <!-- <a href="javascript:void(0)" ng-click="toggleNewPostVisibility()"> -->
+
+            <span class="glyphicon glyphicon-plus"></span>New Post</li>
+        <li class="navbar-form">
+          <div class="form-inline">
+            <input type="text" placeholder="search" class="form-control" ng-model="view.searchText">
+          </div>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"><span>Sort by {{ view.currentSort }}</span> <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li ng-repeat="field in view.sortableFields"><a href="#" ng-click="setOrderVal(field)">Sort by {{ field }}</a></li>
+          </ul>
+        </li>
+      </ul>
+      <br><br><br>
+
+
+
+
+      <blog></blog>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- <script src="/node_modules/angular/angular.min.js"></script> -->
+  </body>
+</html>

@@ -1,0 +1,239 @@
+<!-- <form name="$ctrl.userForm" novalidate class="form" ng-submit="$ctrl.createPost()" > -->
+  <!-- <form name="$ctrl.userForm" novalidate class="form" ng-submit="$ctrl.createPost()" ng-show="view.newPostVisible" > -->
+<!-- <div class="form-group" ng-class="{
+  'has-error' : $ctrl.userForm.title.$invalid,
+  'has-error' : $ctrl.userForm.author.$invalid,
+}">
+<label class="control-label" for="title">Title</label><br>
+ <input
+ name="title"
+ ng-model="$ctrl.postObj.title"
+ required
+ minlength="1"
+ type="text"
+ class="form-control"
+ id="title">
+ <span ng-show="$ctrl.userForm.title.$error">Title must be entered</span><br>
+
+ <label class="control-label" for="author">Author</label><br>
+  <input
+  name="author"
+  ng-model="$ctrl.postObj.author"
+  required
+  minlength="1"
+  type="text"
+  class="form-control"
+  id="author">
+  <span ng-show="$ctrl.userForm.author.$error">Author must be entered</span><br>
+
+
+  <label class="control-label" for="img">Image</label><br>
+   <input
+   name="img"
+   ng-model="$ctrl.postObj.img"
+   type="url"
+   class="form-control"
+   id="img">
+   <br>
+
+   <label class="control-label" for="description">Description</label><br>
+    <input
+    name="description"
+    ng-model="$ctrl.postObj.description"
+    maxlength="255"
+    type="text"
+    class="form-control"
+    id="description">
+    <br>
+
+
+ </div>
+
+<button value="Submit">Submit</button><br>
+</form> -->
+
+
+
+<!-- <nav class="navbar navbar-default">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand">Reddit Clone</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    </div>
+  </div>
+</nav>
+
+<main class="container">
+
+  <div class="pull-right">
+    <p><a class="btn btn-info">New Post</a></p>
+  </div>
+
+  <ul class="nav nav-pills">
+    <li role="presentation" class="active">
+      <input type="search" class="form-control input-sm search-form" placeholder="Filter">
+    </li>
+    <div class="form-inline">
+      <label for="sort">  Sort by </label>
+      <select class="form-control" id="sort">
+        <option>Some text</option>
+        <option>Some text</option>
+      </select>
+    </div>
+  </ul>
+
+  <div class="row">
+    <div class="col-md-8">
+
+      <form name="$ctrl.userForm" novalidate class="form" ng-submit="$ctrl.createPost()">
+      <div class="form-group" ng-class="{
+        'has-error' : $ctrl.userForm.title.$invalid,
+        'has-error' : $ctrl.userForm.author.$invalid,
+      }">
+
+      <label class="control-label" for="title">Title</label><br>
+      <input
+      name="title"
+      ng-model="$ctrl.postObj.title"
+      required
+      minlength="1"
+      type="text"
+      class="form-control"
+      id="title">
+      <span ng-show="$ctrl.userForm.title.$error">Title must be entered</span>
+
+        </div>
+
+        <div>
+        <label class="control-label" for="description">Body</label><br>
+         <textarea
+         ng-model="$ctrl.postObj.description"
+         maxlength="255"
+         type="text"
+         class="form-control"
+         id="body">
+        </div>
+
+        <div>
+        <label class="control-label" for="author">Author</label><br>
+         <input
+         name="author"
+         ng-model="$ctrl.postObj.author"
+         required
+         minlength="1"
+         type="text"
+         class="form-control"
+         id="author">
+         <span ng-show="$ctrl.userForm.author.$error">Author must be entered</span>
+        </div>
+
+        <div>
+        <label class="control-label" for="img">Image URL</label>
+         <input
+         name="img"
+         ng-model="$ctrl.postObj.img"
+         type="url"
+         class="form-control"
+         id="img">
+        </div>
+
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary">
+            Create Post
+          </button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+-- !>
+  <div class="row">
+    <div class="col-md-12">
+
+    <div ng-repeat="posts in $ctrl.blogDB">
+      <div class="well">
+        <div class="media-left">
+          <img class="media-object">
+        </div>
+        <div class="media-body">
+          <h4 class="media-heading">
+            {{ posts.title }}
+            |
+            <a><i class="glyphicon glyphicon-arrow-up"></i></a>
+            <a><i class="glyphicon glyphicon-arrow-down"></i></a>
+            10
+          </h4>
+          <div class="text-right">
+            {{ posts.author }}
+          </div>
+          <img ng-src="{{ posts.img }}" alt="{{author}}" id="img_posts"/>
+          <p>
+            {{ posts.description }}
+          </p>
+          <div>
+            {{ posts.date }}
+            |
+            <i class="glyphicon glyphicon-comment"></i>
+            <a>
+              {{ posts.comments.author }}{{ posts.comments.text }}
+            </a>
+          </div>
+          <div class="row">
+            <div class="col-md-offset-1">
+              <hr>
+              <p>
+                Comment text
+              </p>
+              <form class="form-inline">
+                <div class="form-group">
+                  <input class="form-control">
+                </div>
+                <div class="form-group">
+                  <input type="submit" class="btn btn-primary">
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    </div>
+  </div>
+</main> -->
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div ng-repeat="posts in $ctrl.blogDB">
+
+<div class="card">
+<div class="card-header">
+{{ posts.title }}
+</div>
+<div class="card-block">
+<h4 class="card-title">{{ posts.title }}</h4>
+<img ng-src="{{ posts.img }}" alt="{{author}}" id="img_posts"/>
+<p class="card-text">{{ posts.description }}</p>
+<p>{{ posts.date}}{{ posts.votes }}</p>
+<p>{{ votes.comments }}</p>
+<footer>Author <cite title="Author">{{posts.author}}</cite></footer><hr>
+
+</div>
+</div> -->
