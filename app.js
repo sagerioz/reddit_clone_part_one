@@ -9,8 +9,9 @@
 
 function controller() {
 const vm = this
-vm.formVisible = false;
+
 vm.$onInit = function() {
+  vm.formVisible = false;
   vm.blogDB = [{
     title: "A Very Funny Joke",
     author: "anonymous",
@@ -22,6 +23,10 @@ vm.$onInit = function() {
       {
         author: "Matt",
         text: "Cool costume."
+      },
+      {
+        author: "Erica",
+        text: "It's weird."
       }
     ],
     commentsVisible: false,
@@ -66,12 +71,7 @@ vm.$onInit = function() {
       body: "Tell me a joke!.",
       date: moment().subtract(2, 'days').subtract(3, 'hours').calendar(),
       votes: 10,
-      comments: [
-        {
-          author: "Matt",
-          text: "Cool costume."
-        }
-      ],
+      comments: [],
       commentsVisible: false,
       newCommentVisible: false
     },
@@ -79,17 +79,25 @@ vm.$onInit = function() {
 }
 
 vm.createPost = function () {
+  vm.postObj.votes = 0
   vm.blogDB.push(vm.postObj)
     delete vm.postObj
 }
 
-vm.toggleNewPostVisibility = function () {
-    view.newPostVisible = !view.newPostVisible;
-}
-
 vm.toggleForm = function () {
+   vm.formVisible = !vm.formVisible
+}
+
+
+
+vm.countVotes = function (){
 
 }
+
+vm.toggleComment = function(posts) {
+posts.commentsVisible = !posts.commentsVisible;
+};
+
 }
 
 }());

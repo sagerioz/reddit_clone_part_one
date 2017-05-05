@@ -18,7 +18,7 @@
 <main class="container">
 
   <div class="pull-right">
-    <p><a class="btn btn-info">New Post</a></p>
+    <p><a class="btn btn-info" ng-click="$ctrl.toggleForm()">New Post</a></p>
   </div>
 
   <ul class="nav nav-pills">
@@ -34,7 +34,7 @@
     </div>
   </ul>
 
-  <div class="row">
+  <div ng-if="$ctrl.formVisible" class="row">
     <div class="col-md-8">
 
  <!-- Form -->
@@ -120,16 +120,25 @@
             {{ posts.date }}
             |
             <i class="glyphicon glyphicon-comment"></i>
-            <a>
-              {{ posts.comments[0].author }}
+            <a ng-click="$ctrl.toggleComment(posts)">
+              <ng-pluralize count="posts.comments.length"
+                    when="{'0': 'No comments',
+                        '1': '1 Comment.',
+                        'other': '{} Comments'}">
+             </ng-pluralize>
             </a>
+
+
           </div>
-          <div class="row">
+          <div class="row" ng-if="posts.commentsVisible">
             <div class="col-md-offset-1">
               <hr>
+              <div ng-repeat="comment in posts.comments">
               <p>
-              {{ posts.comments[0].text }}
+              {{ comment.text }}
+              {{ comment.author }}
               </p>
+              </div>
               <form class="form-inline">
                 <div class="form-group">
                   <input class="form-control">
@@ -138,7 +147,8 @@
                   <input type="submit" class="btn btn-primary">
                 </div>
               </form>
-            </div>
+
+          </div>
           </div>
         </div>
       </div>
