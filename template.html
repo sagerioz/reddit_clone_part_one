@@ -26,10 +26,12 @@
       <input type="search" class="form-control input-sm search-form" placeholder="Filter">
     </li>
     <div class="form-inline">
-      <label for="sort">  Sort by </label>
-      <select class="form-control" id="sort">
-        <option>Some text</option>
-        <option>Some text</option>
+      <!-- <label for="sort"> Sort by </label> -->
+      <select class="form-control" id="sort" ng-model="$ctrl.selectedFilter">
+        <option value="votes">Sort by Votes</option>
+        <option value="date">Sort by Date</option>
+        <option value="title">Sort by Title</option>
+
       </select>
     </div>
   </ul>
@@ -96,7 +98,7 @@
 
   <div class="row">
    <div class="col-md-12">
-    <div ng-repeat="posts in $ctrl.blogDB">
+    <div ng-repeat="posts in $ctrl.blogDB | orderBy:$ctrl.selectedFilter:true">
       <div class="well">
         <div class="media-left">
           <img class="media-object">
@@ -105,9 +107,9 @@
           <h4 class="media-heading">
             {{ posts.title }}
             |
-            <a><i class="glyphicon glyphicon-arrow-up"></i></a>
-            <a><i class="glyphicon glyphicon-arrow-down"></i></a>
-            10
+            <a ng-click="$ctrl.countVotesUp(posts)"><i class="glyphicon glyphicon-arrow-up"></i></a>
+            <a ng-click="$ctrl.countVotesDown(posts)"><i class="glyphicon glyphicon-arrow-down"></i></a>
+            {{ posts.votes }}
           </h4>
           <div class="text-right">
             {{ posts.author }}
@@ -131,7 +133,8 @@
 
           </div>
           <div class="row" ng-if="posts.commentsVisible">
-            <div class="col-md-offset-1">
+            <div class="col-xs-10">
+
               <hr>
               <div ng-repeat="comment in posts.comments">
               <p>
