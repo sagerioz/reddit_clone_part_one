@@ -7,7 +7,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand">Reddit Clone</a>
+      <a class="navbar-brand">Joke Vault</a>
     </div>
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -18,16 +18,17 @@
 <main class="container">
 
   <div class="pull-right">
-    <p><a class="btn btn-info" ng-click="$ctrl.toggleForm()">New Post</a></p>
+    <p><a class="btn btn-info" ng-click="$ctrl.toggleForm()" ng-show="$ctrl.formNotVisible">New Post</a>
+    <a class="btn btn-danger" ng-click="$ctrl.toggleForm()" ng-if="$ctrl.formVisible">Close Me</a></p>
   </div>
 
   <ul class="nav nav-pills">
     <li role="presentation" class="active">
-      <input type="search" class="form-control input-sm search-form" placeholder="Filter">
+      <input type="search" class="form-control input-sm search-form" placeholder="Filter" ng-model="$ctrl.searchText">
     </li>
     <div class="form-inline">
       <!-- <label for="sort"> Sort by </label> -->
-      <select class="form-control" id="sort" ng-model="$ctrl.selectedFilter">
+      <select class="form-control" id="sort" ng-model="$ctrl.selectedOptionValue">
         <option value="votes">Sort by Votes</option>
         <option value="date">Sort by Date</option>
         <option value="title">Sort by Title</option>
@@ -98,7 +99,7 @@
 
   <div class="row">
    <div class="col-md-12">
-    <div ng-repeat="posts in $ctrl.blogDB | orderBy:$ctrl.selectedFilter:true">
+    <div ng-repeat="posts in $ctrl.blogDB | orderBy:$ctrl.selectedOptionValue:true | filter:$ctrl.searchText">
       <div class="well">
         <div class="media-left">
           <img class="media-object">
@@ -142,9 +143,11 @@
               {{ comment.author }}
               </p>
               </div>
-              <form class="form-inline">
+
+              <!-- Comments Form -->
+              <form class="form-inline" ng-submit="$ctrl.createComment(posts)">
                 <div class="form-group">
-                  <input class="form-control">
+                  <input class="form-control" ng-model="posts.newComment">
                 </div>
                 <div class="form-group">
                   <input type="submit" class="btn btn-primary">
