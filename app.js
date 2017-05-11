@@ -80,24 +80,32 @@ vm.$onInit = function() {
 }
 
 vm.createPost = function () {
-  console.log(vm.postObj.img);
+  console.log("TITLE", vm.postObj.title);
   if(vm.postObj.img = "undefined"){
     vm.postObj.img = "https://s16-us2.ixquick.com/cgi-bin/serveimage?url=https%3A%2F%2Fd3g919u5f14ld1.cloudfront.net%2Fassets%2Fimages%2Fusers%2Fdefault-avatar.svg&sp=96f3d16b6b3c21675f471d8ccc527e16"
   }
   vm.postObj.votes = 0
+  vm.postObj.comments = []
+  vm.postObj.date = moment().calendar()
   vm.blogDB.push(vm.postObj)
     delete vm.postObj
 }
 
 vm.createComment = function (posts) {
- let temp = posts.newComment
- posts.comments.push({
-   text: temp
- })
- delete posts.newComment
-posts.newCommentVisible = true;
+   if(posts.newComment){
+   let temp = posts.newComment
+   posts.comments.push({
+     text: temp
+   })
+   delete posts.newComment
+  posts.newCommentVisible = true;
 
-}
+  }
+  else{
+    return;
+  }
+ }
+
 
 vm.toggleForm = function () {
    vm.formVisible = !vm.formVisible
